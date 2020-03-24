@@ -54,12 +54,12 @@ def get_label_me_annotations(json_dir):
         
             for i in range(len(self.shapes)):
                 if self.shapes[i]['label'] == old_label:
-                    self.shapes[i]['label'] == new_label
+                    self.shapes[i]['label'] = new_label
                     count+= 1
             
             return count
         
-        def write_to_src(self, ):
+        def write_to_src(self):
             with open(self.src, 'w') as f:
                 data = {"version": self.version,
                         "flags": self.flags,

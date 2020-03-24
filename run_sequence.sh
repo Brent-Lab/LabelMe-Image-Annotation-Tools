@@ -6,7 +6,7 @@ then
     exit 1
 fi
 
-FOLDER=$1
+FOLDER="$1"
 
 if [[ ! $FOLDER == */ ]]
 then
@@ -22,8 +22,8 @@ echo "Do you wish to rename files?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes )
-            read -p 'Enter name for objects in folder: ' OBJECTNAMES
-            python rename_files.py ${FOLDER} ${OBJECTNAMES}
+            read -p 'Enter name for objects in folder (no spaces): ' OBJECTNAMES
+            python rename_files.py "${FOLDER}" ${OBJECTNAMES}
             FOLDER=$(ls -td */ | head -1)
             echo "New folder saved as ${FOLDER}"
             echo "Target directory changed to ${FOLDER}"

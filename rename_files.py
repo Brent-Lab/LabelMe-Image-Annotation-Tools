@@ -13,7 +13,7 @@ def rename_annotation_files(work_dir):
     src_folder_dir = os.path.join(work_dir, src_folder_name)
     src_folder_dir = os.path.join(src_folder_dir, '')
     if not os.path.exists(src_folder_dir):
-        print("Folder does not exist")
+        print(src_folder_dir + " does not exist")
         return
 
     print(os.path.basename(os.path.dirname(src_folder_dir)))
