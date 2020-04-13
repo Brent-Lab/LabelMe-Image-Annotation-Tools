@@ -28,9 +28,10 @@ def append_exif(src_dir):
         comment = ""
         
         for label in annotation_labels:
-            comment = ";" + comment + exif_labels[label]
+            if not exif_labels[label] == "":
+                comment = comment + exif_labels[label] + ";"
         
-        comment = comment[1:] + ":"
+        comment = comment[:-1] + ":"
         
         exif_dict = piexif.load(img_dir)
         full_comment_dump = piexif.helper.UserComment.dump(comment)
