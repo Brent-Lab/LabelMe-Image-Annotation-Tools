@@ -31,6 +31,5 @@ def rename_labels(src_folder_dir):
         annotations[i].write_to_src()
     
     print("Renamed " + labels[index] + " to " + new_name)
-    
 
 rename_labels(os.path.join(os.getcwd(), src_folder_name))

@@ -32,5 +32,4 @@ def get_annotation_data(dir):
     labeled_images, classes = helper(dir)
     print("Labeled Images: " + str(labeled_images))
     
-    
 get_annotation_data(os.getcwd() + "/TaqPath")

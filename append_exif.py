@@ -42,8 +42,5 @@ def append_exif(src_dir):
         count+= 1
         
     print("Finished appending EXIF data to " + str(count) + " images")
-        
-    
-                    
                 
 append_exif(os.path.join(os.getcwd(), src_folder_name))

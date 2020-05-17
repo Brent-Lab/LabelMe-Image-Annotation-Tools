@@ -49,7 +49,6 @@ def rename_annotation_files(work_dir):
                 data['imagePath'] = new_img_name
                 with open(new_json_dir, 'w') as f2:
                     json.dump(data, f2, indent=1)
-
             
     print("Finished Renaming " + str(img_file_count) + " images and corresponding json files.")
             

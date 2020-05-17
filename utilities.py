@@ -7,7 +7,7 @@ def create_folder(dest_dir, name):
     new_folder_dir = os.path.join(dest_dir, new_folder_name)
     
     identifier = 0
-    while os.path.exists(new_folder_dir):
+    while os.path.exists(new_folder_dir): # Creates new folder
         identifier += 1
         new_folder_name = name + " " + str(identifier)
         new_folder_dir = os.path.join(dest_dir, new_folder_name)
@@ -17,16 +17,13 @@ def create_folder(dest_dir, name):
     
 def copy_and_rename_file(src_dir, dest_dir, src_name, new_name):
     old_file_dir = os.path.join(src_dir, src_name)
-    
-    new_file_dir = shutil.copy(old_file_dir, dest_dir)
     new_renamed_file_dir = os.path.join(dest_dir, new_name)
-    
-    os.rename(new_file_dir, new_renamed_file_dir)
+
+    shutil.copy(old_file_dir, new_renamed_file_dir)
+
     return new_renamed_file_dir
     
-
 def get_label_me_annotations(json_dir):
-    
     class LabelMeAnnotation:
         def __init__(self, src_dir):
             with open(src_dir, 'r') as f:
@@ -44,9 +41,11 @@ def get_label_me_annotations(json_dir):
         
         def get_labels(self):
             labels = []
+            
             for label in self.shapes:
-                if not label['label'] in labels:
+                if not label['label'] in labels: # If label name does not already exist
                     labels.append(label['label'])
+                    
             return labels
                     
         def set_labels(self, old_label, new_label):
@@ -86,7 +85,7 @@ def get_all_labels(label_me_annotations):
                 labels.append(label)
     return labels
 
-def get_all_annotations(dir): # recursive=False
+def get_all_annotations(dir): # No Recursion yet
     annotations = []
     
     for filename in os.listdir(dir):
@@ -98,21 +97,3 @@ def get_all_annotations(dir): # recursive=False
             except KeyError:
                 print("Found " + filename + " not in labelme format")
     return annotations
-
-#    for filename in os.listdir(dir):
-#        newdir = os.path.join(dir, filename)
- #       if os.path.isdir(newdir):
- #           labels.extend(get_labels(newdir, labels))
- #       elif filename.lower().endswith('.json') and #utilities.is_labelme_format(filename):
-  #          with open(newdir, 'r') as f:
-#                data = json.load(f)
-                
- #               for label in data['shapes']:
- #                   if not label['label'] in labels:
- #                       labels.append(label['label'])
- #                   #
-                #
-            #
-        #
-    #
-#    return labels
