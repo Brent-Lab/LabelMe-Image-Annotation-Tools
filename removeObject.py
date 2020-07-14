@@ -58,17 +58,6 @@ if __name__ == '__main__':
 
                 #jpeg done
                 if len(object_dict) > 0:
-                    while True:
-                        #scaled_width = w*scale
-                        #scaled_height = h*scale
-                        #cv2.imshow("Display", cv2.resize(img, (scaled_width, scaled_height)))
-                        
-                        #hard coded to fit screen
-                        cv2.imshow("Display", cv2.resize(img, (960, 540)))
-                        k = cv2.waitKey(1)  # This pegs my CPU. 
-                        if k == 27: #esc
-                            break
-                    cv2.destroyAllWindows()
                     utilities.cv2_copy_and_rename_file(src_folder_dir, dest_folder_dir, filename, new_img_name, img)
                 else:
                     utilities.copy_and_rename_file(src_folder_dir, dest_folder_dir, filename, new_img_name)
