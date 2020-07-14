@@ -26,6 +26,4 @@ else:
         npPoints = np.array([listPoints], dtype=np.int32)
         img = cv.imread(jpgFileName, cv.IMREAD_COLOR)
         #listPoints needs to be a numpy array
-        #newImage = cv.fillPoly(img, npPoints, (255, 255, 255))
-        cv.fillPoly(img, npPoints, 255)
-        #print(newImage)
+        cv.fillPoly(img, npPoints, (255, 255, 255)) 

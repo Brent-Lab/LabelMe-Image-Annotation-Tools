@@ -1,6 +1,7 @@
 import os
 import shutil
 import json
+import cv2
 
 def create_folder(dest_dir, name):
     new_folder_name = name
@@ -23,6 +24,13 @@ def copy_and_rename_file(src_dir, dest_dir, src_name, new_name):
 
     return new_renamed_file_dir
     
+def cv2_copy_and_rename_file(src_dir, dest_dir, src_name, new_name, img):
+    old_file_dir = os.path.join(src_dir, src_name)
+    new_renamed_file_dir = os.path.join(dest_dir, new_name)
+
+    cv2.imwrite(new_renamed_file_dir, img)
+    return new_renamed_file_dir
+
 def get_label_me_annotations(json_dir):
     class LabelMeAnnotation:
         def __init__(self, src_dir):
