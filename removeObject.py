@@ -37,8 +37,8 @@ if __name__ == '__main__':
                 json_filename = name + ".json"
                 # Copy image #
                 new_name = item_name + "_" + str(img_file_count)
-                new_img_name = new_name + ext
-                new_json_filename = new_name + ".json" 
+                new_img_name = os.path.join(new_name, ext)
+                new_json_filename = os.path.join(new_name, ".json" )
     
                 #open file
                 open_file = open(json_filename, "r")
@@ -49,7 +49,8 @@ if __name__ == '__main__':
                 #list of Dicts with label:objectName   
                 object_dict = [d for d in shapes_dict if item_name in d.values()]
                 print('len object_dict',len(object_dict))
-                img = cv2.imread(filename, cv2.IMREAD_COLOR)
+                print(new_img_name)
+                img = cv2.imread(new_img_name, cv2.IMREAD_COLOR)
                 if img is None:
                     print('Whoops! Is file extension missing?')
                     assert(True==False)
