@@ -26,10 +26,10 @@ if __name__ == '__main__':
     
         for filename in os.listdir(src_folder_dir):
             name, ext = os.path.splitext(os.path.join(src_folder_dir, filename))
-            name, ext = name.lower(), ext.lower()
+#            name, ext = name.lower(), ext.lower()
             #since json and jpg files have same names, once you have jpeg, you also have json
             #so filename = jpg_file_name
-            print('processing',name)
+            print('processing',filename)
             if ext.endswith(allowed_image_types):
                 print(name,'type is good')
                 img = None
@@ -37,24 +37,27 @@ if __name__ == '__main__':
                 json_filename = name + ".json"
                 # Copy image #
                 new_name = item_name + "_" + str(img_file_count)
-                new_img_name = os.path.join(new_name, ext)
-                new_json_filename = os.path.join(new_name, ".json" )
+                new_img_name = new_name + ext
+                new_json_filename = new_name +  ".json" 
+                print(new_img_name)
+                print(new_json_filename)
     
                 #open file
-                open_file = open(json_filename, "r")
-                py_json = json.load(open_file)
+                with open(json_filename, "r") as open_file:
+                    py_json = json.load(open_file)
                 #pull points for object to change
                 #list of dicts
                 shapes_dict = py_json['shapes']
                 #list of Dicts with label:objectName   
                 object_dict = [d for d in shapes_dict if item_name in d.values()]
                 print('len object_dict',len(object_dict))
-                print(new_img_name)
-                img = cv2.imread(new_img_name, cv2.IMREAD_COLOR)
-                if img is None:
-                    print('Whoops! Is file extension missing?')
-                    assert(True==False)
+                name_of_img_file_to_read = name +  ext
+                print(name_of_img_file_to_read)
+                if not os.path.exists(name_of_img_file_to_read):
+                    print('Input image file does not exist...')
+                    assert(True == False)
                     
+                img = cv2.imread(name_of_img_file_to_read, cv2.IMREAD_COLOR)
                 print('img type:',type(img))
                 for d in object_dict:
                     #list of coordinates [x,y]
