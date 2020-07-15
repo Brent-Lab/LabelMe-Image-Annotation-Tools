@@ -47,12 +47,12 @@ if __name__ == '__main__':
                 #list of Dicts with label:objectName   
                 object_dict = [d for d in shapes_dict if item_name in d.values()]
                 print(len(object_dict))
+                img = cv2.imread(filename, cv2.IMREAD_COLOR)
                 for d in object_dict:
                     #list of coordinates [x,y]
                     #list_points needs to be a numpy array so now np_points
                     list_points = d['points']
                     np_points = np.array([list_points], dtype=np.int32)
-                    img = cv2.imread(filename, cv2.IMREAD_COLOR)
                     cv2.fillPoly(img, np_points, (255, 255, 255)) 
                 #img is edited og
 
