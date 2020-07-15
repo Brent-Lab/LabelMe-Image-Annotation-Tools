@@ -25,6 +25,7 @@ def copy_and_rename_file(src_dir, dest_dir, src_name, new_name):
     return new_renamed_file_dir
     
 def cv2_copy_and_rename_file(src_dir, dest_dir, src_name, new_name, img):
+    print(img.shape)
     old_file_dir = os.path.join(src_dir, src_name)
     new_renamed_file_dir = os.path.join(dest_dir, new_name)
 

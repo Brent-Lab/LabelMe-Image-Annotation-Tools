@@ -29,7 +29,9 @@ if __name__ == '__main__':
             name, ext = name.lower(), ext.lower()
             #since json and jpg files have same names, once you have jpeg, you also have json
             #so filename = jpg_file_name
+            print('processing',name)
             if ext.endswith(allowed_image_types):
+                print(name,'type is good')
                 img = None
                 img_file_count += 1
                 json_filename = name + ".json"
@@ -46,21 +48,32 @@ if __name__ == '__main__':
                 shapes_dict = py_json['shapes']
                 #list of Dicts with label:objectName   
                 object_dict = [d for d in shapes_dict if item_name in d.values()]
-                print(len(object_dict))
+                print('len object_dict',len(object_dict))
                 img = cv2.imread(filename, cv2.IMREAD_COLOR)
+                if img is None:
+                    print('Whoops! Is file extension missing?')
+                    assert(True==False)
+                    
+                print('img type:',type(img))
                 for d in object_dict:
                     #list of coordinates [x,y]
                     #list_points needs to be a numpy array so now np_points
                     list_points = d['points']
                     np_points = np.array([list_points], dtype=np.int32)
+                    print('before fill',type(img))
                     cv2.fillPoly(img, np_points, (255, 255, 255)) 
+                    print('after fill',type(img))
                 #img is edited og
 
                 #jpeg done
                 if len(object_dict) > 0:
-                    utilities.cv2_copy_and_rename_file(src_folder_dir, dest_folder_dir, filename, new_img_name, img)
+                    utilities.cv2_copy_and_rename_file(src_folder_dir, \
+                                                       dest_folder_dir, \
+                                                       filename, new_img_name, img)
                 else:
-                    utilities.copy_and_rename_file(src_folder_dir, dest_folder_dir, filename, new_img_name)
+                    utilities.copy_and_rename_file(src_folder_dir, \
+                                                   dest_folder_dir, filename,\
+                                                   new_img_name)
                 if not os.path.exists(os.path.join(src_folder_dir, json_filename)):
                     continue
     
