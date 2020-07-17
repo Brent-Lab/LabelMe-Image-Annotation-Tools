@@ -44,14 +44,12 @@ def moveNewFiles(object_dict, new_img_name, img, json_filename, new_json_filenam
     new_json_dir = os.path.join(dest_folder_dir, new_json_filename)
     with open(new_json_dir, 'w') as data_file:
         py_json = json.dump(py_json, data_file, indent=4)
-    print("Finished editing " + str(img_file_count) + " images and corresponding json files.")
-
 
 def editFiles(filename, img_file_count, item_name, name, ext):
     img_file_count += 1
     json_filename = name + ".json"
     # Copy image name
-    new_name = item_name + "_" + str(img_file_count)
+    new_name = "UpdatedPic" + "_" + str(img_file_count)
     new_img_name = new_name + ext
     new_json_filename = new_name + ".json" 
 
@@ -87,10 +85,6 @@ if __name__ == '__main__':
             name, ext = os.path.splitext(os.path.join(src_folder_dir, filename))
             #since json and jpg files have same names, once you have jpeg, you also have json
             if ext.endswith(allowed_image_types):
-                #print("filename", filename)
-                #print("img_file_count", img_file_count)
-                #print("item_name", item_name)
-                #print("name", name)
                 img_file_count = editFiles(filename, img_file_count, item_name, name, ext)
             
             

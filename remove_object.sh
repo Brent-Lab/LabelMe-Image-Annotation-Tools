@@ -18,6 +18,7 @@ if [ ! -d "$PWD/$FOLDER" ]; then
     exit 1
 fi
 
-read -p 'What object would you like to remove?' OBJECTNAME
-python removeObject.py "${FOLDER}" ${OBJECTNAME}
+echo "What object would you like to remove?"
+read OBJECTNAME
+python removeObject.py "${FOLDER}" "${OBJECTNAME}"
 echo "Done"
