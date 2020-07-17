@@ -86,5 +86,8 @@ if __name__ == '__main__':
             #since json and jpg files have same names, once you have jpeg, you also have json
             if ext.endswith(allowed_image_types):
                 img_file_count = editFiles(filename, img_file_count, item_name, name, ext)
+            elif filename == "trainval.json":
+                utilities.copy_and_rename_file(src_folder_dir, dest_folder_dir, filename, filename)
+                
             
             
