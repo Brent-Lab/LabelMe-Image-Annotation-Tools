@@ -12,6 +12,7 @@ cd LabelMe-Image-Annotation-Tools
 - Activate the environment with LabelMe already installed then run the following code to install dependencies.
 ```
 pip install piexif
+conda install opencv
 ```
 
 ## Usage
