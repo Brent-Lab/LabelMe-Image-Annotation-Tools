@@ -26,3 +26,10 @@ sh run_sequence.sh FOLDERNAME
 ```
 
 This will run the required scripts which will rename the images and json files, create a coco format annotation json file inside the target folder, and append EXIF data to the images according to the labels attached to it.
+
+### To use remove object funtionality
+Run the following code in the same directory, replacing 'FOLDERNAME' with the name of your folder.
+```
+sh remove_object.sh FOLDERNAME
+```
+This will remove the object's information (polygons, etc) from the JSON file and white out the polygon in the .JPEG file
