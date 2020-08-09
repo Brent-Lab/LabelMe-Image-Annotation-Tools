@@ -128,8 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Mac
 .DS_Store
-
-# Folders
-
+!images/
+!output/
+.idea/
+*.pth

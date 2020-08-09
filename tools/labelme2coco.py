@@ -1,5 +1,4 @@
 import os
-import argparse
 import json
 
 from labelme import utils
@@ -142,6 +141,11 @@ class labelme2coco(object):
             os.path.dirname(os.path.abspath(self.save_json_path)), exist_ok=True
         )
         json.dump(self.data_coco, open(self.save_json_path, "w"), indent=4)
+
+
+def save_to_coco_json(labelme_dir, output_dir, name):
+    labelme_json = glob.glob(os.path.join(labelme_dir, "*.json"))
+    labelme2coco(labelme_json, os.path.join(output_dir, name))
 
 
 if __name__ == "__main__":
