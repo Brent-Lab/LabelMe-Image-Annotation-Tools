@@ -1,6 +1,7 @@
 import os
 import sys
-import tools
+from legacy import tools
+
 
 # TODO:
 # Integrate with labelme_utils.py

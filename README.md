@@ -1,27 +1,33 @@
 # LabelMe-Image-Annotation-Tools
-Useful tools for creating image annotations through LabelMe
+LabelMe Image Annotation Tools is an application meant to be paired with the LabelMe application to
+easily process the annotations and images.
+
+LabelMe: https://github.com/wkentaro/labelme
 
 ## Installation
-
-- Make sure you have Anaconda, pip, and LabelMe installed for python 3.7.
-- Run the code below to copy the code and enter it:
+- Make sure to have Anaconda installed with python version 3.7.
+- Clone the repository
 ```
 git clone https://github.com/WafflesAreFriends/LabelMe-Image-Annotation-Tools.git
-cd LabelMe-Image-Annotation-Tools
 ```
-- Activate the environment with LabelMe already installed then run the following code to install dependencies.
+### Easy installation
+- Run the following in the command line from the main directory to setup the environment.
+    - Note that doing this will automatically install LabelMe as well.
+```
+conda env create -f environment.yml
+```
+### Manual Installation
+- Install LabelMe from the following link: https://github.com/wkentaro/labelme
+- Install the following dependencies:
 ```
 pip install piexif
 ```
 
+
 ## Usage
+Activate the python environment with the needed dependencies installed.
 
-Before usage, move the folder with images and LabelMe annotations into the project directory. Please have all the images in the direct subdirectory of the folder. This does not support nested folders yet.
-
-### Quick use
-Run the the following code in the same directory replacing 'FOLDERNAME' with the name of your folder. This can be done easily by typing the start of the folder name and then hitting tab.
+Run the following code to turn on the application.
 ```
-sh run_sequence.sh FOLDERNAME
+python annotation_tool
 ```
-
-This will run the required scripts which will rename the images and json files, create a coco format annotation json file inside the target folder, and append EXIF data to the images according to the labels attached to it.

@@ -1,10 +1,8 @@
 import os
 import sys
-import glob
 import json
 
-import tools
-
+from legacy import tools
 
 allowed_image_types = (".jpg", ".jpeg")
 

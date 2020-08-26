@@ -1,0 +1,7 @@
+name: labelme_tools3
+channels:
+  - conda
+dependencies:
+  - pip:
+    - labelme
+    - piexif

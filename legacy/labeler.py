@@ -2,7 +2,6 @@ import cv2
 import imutils
 import numpy as np
 from U2Net import inference as u2
-import tools
 
 OUTPUT_FOLDER = '.U2Net/output/'
 MODEL_NAME = 'u2net.pth'
