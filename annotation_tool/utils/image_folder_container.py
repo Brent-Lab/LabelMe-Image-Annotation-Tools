@@ -10,7 +10,7 @@ class ImageContainer:
     def __init__(self, img_path):
         self.img_path = img_path
         self.annotation = self.__load_labelme_annotation()
-        self.user_comments = "test"
+        self.user_comments = ""
 
     def get_imgtk(self, resize_width, resize_height):
         img_pil = self.__load_img_pil_with_exif(self.img_path)
@@ -45,17 +45,20 @@ class ImageContainer:
         return annotation
 
     def __apply_exif_orientation(self, img_pil):
-        for orientation in ExifTags.TAGS.keys():
-            if ExifTags.TAGS[orientation] == 'Orientation':
-                break
-        exif = dict(img_pil._getexif().items())
+        try:
+            for orientation in ExifTags.TAGS.keys():
+                if ExifTags.TAGS[orientation] == 'Orientation':
+                    break
+            exif = dict(img_pil._getexif().items())
 
-        if exif[orientation] == 3:
-            img_pil = img_pil.transpose(Image.ROTATE_180)
-        elif exif[orientation] == 6:
-            img_pil = img_pil.transpose(Image.ROTATE_270)
-        elif exif[orientation] == 8:
-            img_pil = img_pil.transpose(Image.ROTATE_90)
+            if exif[orientation] == 3:
+                img_pil = img_pil.transpose(Image.ROTATE_180)
+            elif exif[orientation] == 6:
+                img_pil = img_pil.transpose(Image.ROTATE_270)
+            elif exif[orientation] == 8:
+                img_pil = img_pil.transpose(Image.ROTATE_90)
+        except Exception as e:
+            print(e)
 
         return img_pil
 
@@ -65,6 +68,7 @@ class ImageFolderContainer:
         self.folder_name = os.path.basename(folder_path) + "_New"
         self.folder_path = folder_path
         self.allowed_img_types = allowed_img_types
+
         self.img_paths = self.__get_img_paths_in_folder(folder_path)
         self.img_container_list = self.__create_img_container_list(self.img_paths)
         self.current_img_idx = 0 if len(self.img_container_list) > 0 else None
@@ -103,7 +107,6 @@ class ImageFolderContainer:
                     comments = comments + exif_label_map[label] + ";"
             comments = comments[:-1] + ":" # Replace last ; with a :
             img_container.set_exif_user_comments(comments)
-
 
     def export_folder(self, folder_path, img_name):
         # 1. Create directory of folder_path

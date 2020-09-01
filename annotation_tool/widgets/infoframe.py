@@ -1,10 +1,10 @@
 import tkinter as tk
-from application_state import ApplicationState
 
 
 class ObjectList(tk.Frame):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent, func_callbacks, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
+        self.func_callbacks = func_callbacks
         self.create_widgets()
 
     def create_widgets(self):
@@ -21,9 +21,9 @@ class ObjectList(tk.Frame):
 
 
 class StatisticsFrame(tk.Frame):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent, func_callbacks, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
-        self.app_state = ApplicationState()
+        self.func_callbacks = func_callbacks
         self.create_widgets()
 
     def create_widgets(self):
@@ -40,13 +40,14 @@ class StatisticsFrame(tk.Frame):
 
 
 class InfoFrame(tk.Frame):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent, func_callbacks, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
+        self.func_callbacks = func_callbacks
         self.create_widgets()
 
     def create_widgets(self):
-        self.object_list = ObjectList(self, borderwidth=0, highlightbackground="black", highlightthickness=1)
-        self.statistics_frame = StatisticsFrame(self, borderwidth=0, highlightbackground="black", highlightthickness=1)
+        self.object_list = ObjectList(self, func_callbacks=self.func_callbacks, borderwidth=0, highlightbackground="black", highlightthickness=1)
+        self.statistics_frame = StatisticsFrame(self, func_callbacks=self.func_callbacks, borderwidth=0, highlightbackground="black", highlightthickness=1)
 
         self.object_list.pack(side=tk.TOP)
         self.statistics_frame.pack(side=tk.TOP)
