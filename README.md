@@ -17,6 +17,10 @@ git clone https://github.com/WafflesAreFriends/LabelMe-Image-Annotation-Tools.gi
 conda env create -f environment.yml
 ```
 ### Manual Installation
+- Create a new conda environment called 'labelme_tools'.
+```
+conda create --name=labelme_tools
+```
 - Install LabelMe from the following link: https://github.com/wkentaro/labelme
 - Install the following dependencies:
 ```
@@ -26,8 +30,13 @@ pip install piexif
 
 ## Usage
 Activate the python environment with the needed dependencies installed.
-
+```
+conda activate labelme_tools
+```
+### Using the GUI
 Run the following code to turn on the application.
 ```
 python annotation_tool
 ```
+### Using terminal scripts
+Scripts for the terminal are installed under the 'legacy' folder.
